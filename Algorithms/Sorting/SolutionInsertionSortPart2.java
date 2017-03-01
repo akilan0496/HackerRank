@@ -12,19 +12,14 @@ public class SolutionInsertionSortPart2 {
            // The code for Input/Output is already provided
     	
     	for(int j=1;j<ar.length;j++) {
-    		
+            
     		int key = ar[j];
-    		int keyPos = j;
+    		int keyComparePos = j -1;
     		
-    		for(int i=keyPos-1;i>=0;i--){
-    			if(key < ar[i]) {
-    				ar[i+1] = ar[i];
-    				ar[i] = key;
-    			} else {
-    				break;
-    			}
+    		for(int i=keyComparePos;i>=0 && key < ar[i];i--){
+    			ar[i+1] = ar[i];
+    			ar[i] = key;
     		}
-    		
     		printArray(ar);
     	}
     }  
