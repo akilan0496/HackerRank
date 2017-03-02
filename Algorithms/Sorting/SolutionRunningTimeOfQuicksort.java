@@ -10,7 +10,7 @@ public class SolutionRunningTimeOfQuicksort {
     int insertionSortShift = 0;
 
     public static void main(String[] args) {
-        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named SolutionRunningTimeOfQuicksort. */
         Scanner in = new Scanner(System.in);
         int n = in.nextInt();
         int[] qSort = new int[n];
@@ -19,36 +19,32 @@ public class SolutionRunningTimeOfQuicksort {
             qSort[i] = in.nextInt();
             iSort[i] = qSort[i];
         }
-        Solution sol = new Solution();
+        SolutionRunningTimeOfQuicksort sol = new SolutionRunningTimeOfQuicksort();
         quickSort(qSort, 0, n-1, sol);
         insertionSortPart2(iSort, sol);
         System.out.println(sol.insertionSortShift - sol.quickSortSwap);
         
     }
     
-    static void insertionSortPart2(int[] ar, Solution sol) {       
+    static void insertionSortPart2(int[] ar, SolutionRunningTimeOfQuicksort sol) {       
            // Fill up the code for the required logic here
            // Manipulate the array as required
            // The code for Input/Output is already provided
     	
-    	for(int j=1;j<ar.length;j++) {
-    		
+	for(int j=1;j<ar.length;j++) {
+            
     		int key = ar[j];
-    		int keyPos = j;
+    		int keyComparePos = j -1;
     		
-    		for(int i=keyPos-1;i>=0;i--){
-    			if(key < ar[i]) {
-    				ar[i+1] = ar[i];
-    				ar[i] = key;
-                    sol.insertionSortShift += 1;
-    			} else {
-    				break;
-    			}
+    		for(int i=keyComparePos;i>=0 && key < ar[i];i--){
+    			ar[i+1] = ar[i];
+    			ar[i] = key;
+			sol.insertionSortShift += 1;
     		}
     	}
     }
     
-    static void quickSort(int[] a, int low, int high, Solution sol) {
+    static void quickSort(int[] a, int low, int high, SolutionRunningTimeOfQuicksort sol) {
        if(low  < high) {
            int pi = partition(a, low, high, sol);           
            quickSort(a, low, pi-1, sol);
@@ -58,7 +54,7 @@ public class SolutionRunningTimeOfQuicksort {
         
     }
     
-    static int partition(int[] a, int low, int high, Solution sol) {
+    static int partition(int[] a, int low, int high, SolutionRunningTimeOfQuicksort sol) {
         int pivot = a[high];
         int iterator = low;
         
